@@ -74,7 +74,7 @@ export default class App extends Component {
   }
 
   checkViewport(e) {
-    this.setState({ isMobile: (window.innerWidth <= 1024) });
+    this.setState({ isMobile: (window.innerWidth <= 960) });
   }
 
   processResults(raw, delimiters) {

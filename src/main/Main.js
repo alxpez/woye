@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 class Main extends Component {
@@ -26,22 +27,21 @@ class Main extends Component {
           justify={'center'}
           spacing={24}
         >
-          <Grid item
-            xs={12}
-          >
+          <Grid item xs={12}>
             <TextField className={classes.textField}
               onChange={(e) => this.onTextFieldChange(e)}
               label="Insert raw text"
               multiline />
           </Grid>
-          <Grid item
-            xs={12}
-          >
-            <Button onClick={() => this.onSearch(this.state.raw)}>
-              SEARCH
-            </Button>
-          </Grid>
         </Grid>
+        <Button variant="fab"
+          color="primary"
+          aria-label="Search"
+          className={classes.fab}
+          onClick={() => this.onSearch(this.state.raw)}
+        >
+          <SearchIcon />
+        </Button>
       </div>
     )
   }
@@ -59,6 +59,11 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     padding: 48,
+  },
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 2,
   },
   textField: {
     width: '100%',

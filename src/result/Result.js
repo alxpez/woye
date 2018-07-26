@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ResultItem from './list/ResultItem';
+import ClearAllIcon from '@material-ui/icons/ClearAll';
 
 
 class Result extends Component {
@@ -50,10 +51,15 @@ class Result extends Component {
             {isMobile ? null : resultList}
             {details}
           </Grid>
-          <Grid item xs={12} md={8}>
-            <Button onClick={() => this.props.onClear()}>CLEAR</Button>
-          </Grid>
         </Grid>
+        <Button variant="fab"
+          color="primary"
+          aria-label="Search"
+          className={classes.fab}
+          onClick={() => this.props.onClear()}
+        >
+          <ClearAllIcon />
+        </Button>
       </div>
     )
   }
@@ -69,6 +75,11 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     height: 500,
+  },
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 2,
   },
 });
 
