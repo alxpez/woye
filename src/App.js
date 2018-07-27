@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { parser } from 'parsist';
 import Main from './main/Main';
-import Result from './result/Result';
+import Details from './details/Details';
 import Header from './header/Header';
-import MobileResult from './result/MobileResult';
+import ResultsDrawer from './drawer/ResultsDrawer';
 
 
-export default class App extends Component {
+class App extends Component {
+
+  static props = {
+    classes: PropTypes.object.isRequired,
+  }
 
   state = {
     isMobile: false,
@@ -29,29 +35,36 @@ export default class App extends Component {
 
   render() {
     const { isMobile, raw, resultArray, isDrawerOpen, resultSelectedIndex } = this.state
+    const { classes } = this.props
+
+    const content = (
+      (raw === '')
+        ? <Main onSearch={(e) => this.searchHandler(e)} />
+        : <Details resultSelected={resultArray[resultSelectedIndex]}
+          onClear={() => this.clearHandler()} 
+          isMobile={isMobile}/>
+    )
+
+    const drawer = (
+      (raw !== '')
+        ? <ResultsDrawer isOpen={isDrawerOpen}
+          isMobile={isMobile}
+          resultArray={resultArray}
+          resultSelectedIndex={resultSelectedIndex}
+          onResultSelect={(index) => this.resultSelectHandler(index)}
+          onToggleDrawer={(status) => this.toggleDrawerHandler(status)} />
+        : null
+    )
 
     return (
       <React.Fragment>
         <CssBaseline />
-        <Header isMobile={isMobile && raw !== ''}
-          onMenuClick={() => this.toggleDrawerHandler(!isDrawerOpen)} />
-        {
-          isMobile
-            ? <MobileResult isOpen={isDrawerOpen}
-              resultArray={resultArray}
-              resultSelectedIndex={resultSelectedIndex}
-              onResultSelect={(index) => this.resultSelectHandler(index)}
-              onToggleDrawer={(status) => this.toggleDrawerHandler(status)} />
-            : null
-        }{
-          (raw === '')
-            ? <Main onSearch={(e) => this.searchHandler(e)} />
-            : <Result isMobile={isMobile}
-              resultArray={resultArray}
-              resultSelectedIndex={resultSelectedIndex}
-              onClear={() => this.clearHandler()}
-              onResultSelect={(index) => this.resultSelectHandler(index)} />
-        }
+        <div className={classes.root}>
+          <Header isMobile={isMobile && raw !== ''}
+            onMenuClick={() => this.toggleDrawerHandler(!isDrawerOpen)} />
+          {drawer}
+          {content}
+        </div>
       </React.Fragment>
     )
   }
@@ -87,3 +100,17 @@ export default class App extends Component {
     })
   }
 }
+
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+  },
+})
+
+
+export default withStyles(styles)(App);

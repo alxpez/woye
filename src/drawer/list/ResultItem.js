@@ -43,9 +43,6 @@ const styles = {
   selected: {
     backgroundColor: 'rgba(0,0,0,0.12)'
   },
-  fullList: {
-    width: 'auto',
-  },
 }
 
 export default withStyles(styles)(ResultItem);

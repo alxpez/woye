@@ -6,11 +6,12 @@ import List from '@material-ui/core/List';
 import ResultItem from './list/ResultItem';
 
 
-class MobileResults extends Component {
+class ResultsDrawer extends Component {
 
   static propTypes = {
     classes: PropTypes.object.isRequired,
     isOpen: PropTypes.bool.isRequired,
+    isMobile: PropTypes.bool.isRequired,
     onToggleDrawer: PropTypes.func.isRequired,
     resultArray: PropTypes.array.isRequired,
     onResultSelect: PropTypes.func.isRequired,
@@ -18,7 +19,7 @@ class MobileResults extends Component {
   }
 
   render() {
-    const { classes, resultArray, isOpen, onToggleDrawer, resultSelectedIndex, onResultSelect } = this.props
+    const { classes, resultArray, isOpen, isMobile, onToggleDrawer, resultSelectedIndex, onResultSelect } = this.props
 
     const resultList = (
       <div className={classes.list}>
@@ -35,29 +36,39 @@ class MobileResults extends Component {
       </div>
     )
 
-    return (
-      <div>
-        <Drawer open={isOpen} onClose={() => onToggleDrawer(false)}>
-          <div tabIndex={0}
-            role="button"
-            onClick={() => onToggleDrawer(false)}
-            onKeyDown={() => onToggleDrawer(false)}
-          >
-            {resultList}
-          </div>
-        </Drawer>
+    const temporaryDrawer = (
+      <div tabIndex={0}
+        role="button"
+        onClick={() => onToggleDrawer(false)}
+        onKeyDown={() => onToggleDrawer(false)}
+      >
+        {resultList}
       </div>
+    )
+
+    const clippedDrawer = (
+      <div>
+        <div className={classes.toolbar} />
+        {resultList}
+      </div>
+    )
+
+    return (
+      <Drawer open={isOpen}
+        variant={isMobile ? 'temporary' : 'permanent'}
+        onClose={() => onToggleDrawer(false)}
+      >
+        {isMobile ? temporaryDrawer : clippedDrawer}
+      </Drawer>
     )
   }
 }
 
-const styles = {
+const styles = theme => ({
   list: {
     width: 250,
   },
-  fullList: {
-    width: 'auto',
-  },
-}
+  toolbar: theme.mixins.toolbar,
+})
 
-export default withStyles(styles)(MobileResults);
+export default withStyles(styles)(ResultsDrawer);

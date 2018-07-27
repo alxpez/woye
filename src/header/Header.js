@@ -30,27 +30,25 @@ class Header extends Component {
     )
 
     return (
-      <div className={classes.root} >
-        <AppBar position="static">
-          <Toolbar>
-            {isMobile ? menuButton : null}
-            <Typography variant="title"
-              color="inherit"
-              className={classes.flex}
-            >
-              WOYE
+      <AppBar position="absolute" className={classes.appBar}>
+        <Toolbar>
+          {isMobile ? menuButton : null}
+          <Typography variant="title"
+            color="inherit"
+            className={classes.flex}
+          >
+            WOYE
              </Typography>
-          </Toolbar>
-        </AppBar>
-      </div>
+        </Toolbar>
+      </AppBar>
     )
   }
 }
 
 
-const styles = {
-  root: {
-    flexGrow: 1,
+const styles = theme => ({
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
   },
   flex: {
     flexGrow: 1,
@@ -59,6 +57,6 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-}
+})
 
 export default withStyles(styles)(Header);

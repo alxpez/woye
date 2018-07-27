@@ -22,7 +22,8 @@ class Main extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <main className={classes.root}>
+        <div className={classes.toolbar} />
         <Grid container
           justify={'center'}
           spacing={24}
@@ -42,7 +43,7 @@ class Main extends Component {
         >
           <SearchIcon />
         </Button>
-      </div>
+      </main>
     )
   }
 
@@ -69,6 +70,7 @@ const styles = theme => ({
     width: '100%',
     height: '100%',
   },
+  toolbar: theme.mixins.toolbar,
 });
 
 export default withStyles(styles)(Main);
