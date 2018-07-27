@@ -55,6 +55,11 @@ class App extends Component {
       },
     });
 
+    const header = (
+      <Header isMobile={isMobile && raw !== ''}
+        onMenuClick={() => this.toggleDrawerHandler(!isDrawerOpen)} />
+    )
+
     const content = (
       (raw === '')
         ? <Main onSearch={(e) => this.searchHandler(e)} />
@@ -79,8 +84,7 @@ class App extends Component {
         <CssBaseline />
         <MuiThemeProvider theme={theme}>
           <div className={classes.root}>
-            <Header isMobile={isMobile && raw !== ''}
-              onMenuClick={() => this.toggleDrawerHandler(!isDrawerOpen)} />
+            {header}
             {drawer}
             {content}
           </div>
