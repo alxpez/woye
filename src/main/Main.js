@@ -59,7 +59,7 @@ class Main extends Component {
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    padding: 48,
+    padding: 24,
   },
   fab: {
     position: 'fixed',

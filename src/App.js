@@ -6,7 +6,7 @@ import { parser } from 'parsist';
 import Main from './main/Main';
 import Details from './details/Details';
 import Header from './header/Header';
-import ResultsDrawer from './drawer/ResultsDrawer';
+import Results from './results/Results';
 
 
 class App extends Component {
@@ -47,7 +47,7 @@ class App extends Component {
 
     const drawer = (
       (raw !== '')
-        ? <ResultsDrawer isOpen={isDrawerOpen}
+        ? <Results isOpen={isDrawerOpen}
           isMobile={isMobile}
           resultArray={resultArray}
           resultSelectedIndex={resultSelectedIndex}

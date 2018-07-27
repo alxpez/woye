@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
-import ResultItem from './list/ResultItem';
+import ResultItem from './item/ResultItem';
 
 
-class ResultsDrawer extends Component {
+class Result extends Component {
 
   static propTypes = {
     classes: PropTypes.object.isRequired,
@@ -71,4 +71,4 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
 })
 
-export default withStyles(styles)(ResultsDrawer);
+export default withStyles(styles)(Result);
