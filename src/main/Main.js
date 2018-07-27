@@ -36,7 +36,7 @@ class Main extends Component {
           </Grid>
         </Grid>
         <Button variant="fab"
-          color="primary"
+          color="secondary"
           aria-label="Search"
           className={classes.fab}
           onClick={() => this.onSearch(this.state.raw)}

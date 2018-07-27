@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { parser } from 'parsist';
 import Main from './main/Main';
@@ -37,12 +37,30 @@ class App extends Component {
     const { isMobile, raw, resultArray, isDrawerOpen, resultSelectedIndex } = this.state
     const { classes } = this.props
 
+    const theme = createMuiTheme({
+      palette: {
+        type: 'dark',
+        primary: {
+          light: '#4b4b4b',
+          main: '#232323',
+          dark: '#000000',
+          contrastText: '#fff',
+        },
+        secondary: {
+          light: '#ff5a36',
+          main: '#ff0000',
+          dark: '#c20000',
+          contrastText: '#fff',
+        },
+      },
+    });
+
     const content = (
       (raw === '')
         ? <Main onSearch={(e) => this.searchHandler(e)} />
         : <Details resultSelected={resultArray[resultSelectedIndex]}
-          onClear={() => this.clearHandler()} 
-          isMobile={isMobile}/>
+          onClear={() => this.clearHandler()}
+          isMobile={isMobile} />
     )
 
     const drawer = (
@@ -59,12 +77,14 @@ class App extends Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <div className={classes.root}>
-          <Header isMobile={isMobile && raw !== ''}
-            onMenuClick={() => this.toggleDrawerHandler(!isDrawerOpen)} />
-          {drawer}
-          {content}
-        </div>
+        <MuiThemeProvider theme={theme}>
+          <div className={classes.root}>
+            <Header isMobile={isMobile && raw !== ''}
+              onMenuClick={() => this.toggleDrawerHandler(!isDrawerOpen)} />
+            {drawer}
+            {content}
+          </div>
+        </MuiThemeProvider>
       </React.Fragment>
     )
   }
@@ -104,11 +124,8 @@ class App extends Component {
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
+    minHeight: '100%',
+    backgroundColor: '#000',
   },
 })
 

@@ -24,7 +24,7 @@ class Details extends Component {
           {resultSelected.value}
         </Paper>
         <Button variant="fab"
-          color="primary"
+          color="secondary"
           aria-label="Search"
           className={classes.fab}
           onClick={() => this.props.onClear()}
@@ -39,14 +39,12 @@ class Details extends Component {
 const styles = theme => ({
   desktop: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
     paddingLeft: 250 + (theme.spacing.unit * 3),
     minWidth: 0,
   },
   mobile: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
     minWidth: 0,
   },
