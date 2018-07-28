@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import ClearAllIcon from '@material-ui/icons/ClearAll';
+import Video from './video/Video';
+import Wiki from './wiki/Wiki';
 
 
 class Details extends Component {
@@ -20,9 +21,10 @@ class Details extends Component {
     return (
       <main className={isMobile ? classes.mobile : classes.desktop}>
         <div className={classes.toolbar} />
-        <Paper className={classes.paper}>
-          {resultSelected.value}
-        </Paper>
+        <div className={classes.paper}>
+          <Wiki isMobile={isMobile} searchString={resultSelected.value} />
+          <Video isMobile={isMobile} searchString={resultSelected.value} />
+        </div>
         <Button variant="fab"
           color="secondary"
           aria-label="Search"
@@ -38,25 +40,31 @@ class Details extends Component {
 
 const styles = theme => ({
   desktop: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3,
-    paddingLeft: 250 + (theme.spacing.unit * 3),
-    minWidth: 0,
+    marginLeft: 255,
+    width: 'calc(100% - 255px)',
+    top: 0,
+    bottom: 0,
+    position: 'absolute'
   },
   mobile: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3,
-    minWidth: 0,
+    width: '100%',
+    top: 0,
+    bottom: 0,
+    position: 'absolute'
   },
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
-    color: theme.palette.text.secondary,
+    width: '100%',
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
+    zIndex: 0,
   },
   fab: {
     position: 'fixed',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 2,
+    bottom: theme.spacing.unit * 3,
+    right: theme.spacing.unit * 3,
   },
   toolbar: theme.mixins.toolbar,
 });

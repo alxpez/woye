@@ -107,7 +107,11 @@ class App extends Component {
   }
 
   clearHandler() {
-    this.setState({ raw: '' })
+    this.setState({
+      raw: '',
+      resultArray: [],
+      resultSelectedIndex: 0,
+    })
   }
 
   checkViewport(e) {
