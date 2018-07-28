@@ -1,6 +1,6 @@
 <h1 align="center">WOYE</h1>
 <p align="center"><strong>W</strong>hat's <strong>O</strong>n <strong>Y</strong>our <strong>E</strong>ars</p>
-<p align="center">Insert plain text, get cross-site information (Youtube / Wikipedia)</p>
+<p align="center">&gt; Insert plain text, get cross-site information &lt;</p>
 
 ## Why?
 During my trips, I tend to ask everyone I meet to share their favourite bands/artists... it happens that usually I don't have an Internet connection, and also happens that by the time I go to check out the list of suggestions, everyone that added stuff, did it in their own way (aka. there's no clear format for the information gathered).
