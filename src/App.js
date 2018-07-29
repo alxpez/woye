@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline'
-import { parser } from './utils/parsist';
+import { parser } from 'parsist';
 import Main from './main/Main';
 import Details from './details/Details';
 import Header from './header/Header';
