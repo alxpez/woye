@@ -10,7 +10,7 @@ cache:
     - "node_modules"
     - "$HOME/.npm"
 install:
-  - npm run install:all
+  - npm install
 script:
   - npm run build
 notifications:

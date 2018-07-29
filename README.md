@@ -2,6 +2,30 @@
 <p align="center"><strong>W</strong>hat's <strong>O</strong>n <strong>Y</strong>our <strong>E</strong>ars</p>
 <p align="center">&gt; Insert plain-text, get information &lt;</p>
 
+</br>
+
+<p align="center">
+  <a href="https://github.com/facebook/react">
+    <img src="https://img.shields.io/badge/react-%5E16.4-61dafb.svg?longCache=true" alt="reactjs">
+  </a>
+  <a href="https://github.com/alxpez/woye/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-green.svg?longCache=true" alt="MIT">
+  </a>
+  <a href="https://travis-ci.org/alxpez/woye/branches">
+    <img src="https://api.travis-ci.org/alxpez/woye.svg" alt="travis-ci">
+  </a>
+  <a href="https://www.codacy.com/app/alxpez/woye">
+    <img src="https://api.codacy.com/project/badge/Grade/09572d9c827940f5a31e418e09ef33a5" alt="codacy">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/vuegg/vuegg#donate">
+    <img src="https://img.shields.io/badge/%E2%9D%A4%EF%B8%8F-donate-red.svg?longCache=true" alt="donate">
+  </a>
+</p>
+
+
 ## Why?
 During my trips, I tend to ask everyone I meet to share their favourite bands/artists... it happens that usually I don't have an Internet connection, and also happens that by the time I go to check out the list of suggestions, people had added stuff in their own way (aka. there's no one single format for the information gathered).
 
