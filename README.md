@@ -3,7 +3,7 @@
 <p align="center">&gt; Insert plain-text, get information &lt;</p>
 
 ## Why?
-During my trips, I tend to ask everyone I meet to share their favourite bands/artists... it happens that usually I don't have an Internet connection, and also happens that by the time I go to check out the list of suggestions, people added stuff in their own way (aka. there's no one single format for the information gathered).
+During my trips, I tend to ask everyone I meet to share their favourite bands/artists... it happens that usually I don't have an Internet connection, and also happens that by the time I go to check out the list of suggestions, people had added stuff in their own way (aka. there's no one single format for the information gathered).
 
 After some years, I came across one of these lists with hundreds of items, so I decided to build something to help me with the task of sorting all of it.
 
