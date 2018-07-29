@@ -11,8 +11,8 @@
   <a href="https://github.com/alxpez/woye/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-green.svg?longCache=true" alt="MIT">
   </a>
-  <a href="https://travis-ci.org/alxpez/woye/branches">
-    <img src="https://api.travis-ci.org/alxpez/woye.svg" alt="travis-ci">
+  <a href="https://travis-ci.com/alxpez/woye">
+    <img src="https://travis-ci.com/alxpez/woye.svg?branch=master" alt="travis-ci">
   </a>
   <a href="https://www.codacy.com/app/alxpez/woye">
     <img src="https://api.codacy.com/project/badge/Grade/09572d9c827940f5a31e418e09ef33a5" alt="codacy">
@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/vuegg/vuegg#donate">
+  <a href="https://github.com/alxpez/woye#donate">
     <img src="https://img.shields.io/badge/%E2%9D%A4%EF%B8%8F-donate-red.svg?longCache=true" alt="donate">
   </a>
 </p>
@@ -46,3 +46,15 @@ Originally it was thought for music, but it's usefull for any other kind of info
 - [ ] Allow delimiters edition/customization (for parsing plain text input)
 - [ ] Implement locale selection (for more specific results by country/language)
 - [ ] Add category selection (more accurate search when input items from same category)
+
+## Donate
+
+Do you like what I do?
+
+I develop projects like this one (checkout [@vuegg](https://github.com/vuegg/vuegg) my other child) on my spare time, after work hours, homie weekends... or during summer holidays like in this case.
+
+Contribution is the most desirable help always, but for those with no much time in hands that still want contribute somehow...
+
+<a href="https://www.patreon.com/bePatron?u=10700791" target="_blank"><img src="https://raw.githubusercontent.com/vuegg/vuegg-assets/master/patreon.png" alt="Become a Patron" style="height:35px;width:auto"/></a> OR <a href="https://www.buymeacoffee.com/alxpez" target="_blank"><img src="https://raw.githubusercontent.com/vuegg/vuegg-assets/master/buymeacoffee.png" alt="Buy Me A Coffee" style="height:35px;width:auto"></a>
+
+Your donation will help me to stay awake during those hours I should be sleeping. And make me really happy in general.
