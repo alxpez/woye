@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline'
-import { parser } from 'parsist';
+import parser from 'parsist';
 import Main from './main/Main';
 import Details from './details/Details';
 import Header from './header/Header';
@@ -18,10 +18,12 @@ class App extends Component {
   state = {
     isMobile: false,
     isDrawerOpen: false,
-    raw: '',
     resultArray: [],
     resultSelectedIndex: 0,
-    delimiters: '[\\.\\,\\n\\*\\t\\r]',
+    raw: '',
+    delimiters: '[\\.\\,\\n\\*\\#\\<\\>\\;]',
+    category: '',
+    locale: 'en',
   }
 
   componentDidMount() {
@@ -34,7 +36,7 @@ class App extends Component {
   }
 
   render() {
-    const { isMobile, raw, resultArray, isDrawerOpen, resultSelectedIndex } = this.state
+    const { isMobile, raw, delimiters, category, locale, resultArray, isDrawerOpen, resultSelectedIndex } = this.state
     const { classes } = this.props
 
     const theme = createMuiTheme({
@@ -56,26 +58,37 @@ class App extends Component {
     });
 
     const header = (
-      <Header isMobile={isMobile && raw !== ''}
+      <Header isMobile={isMobile && (resultArray.length > 0)}
         onMenuClick={() => this.toggleDrawerHandler(!isDrawerOpen)} />
     )
 
     const content = (
-      (raw === '')
-        ? <Main onSearch={(e) => this.searchHandler(e)} />
+      (resultArray.length === 0)
+        ? <Main isMobile={isMobile}
+          inputValue={raw}
+          delimitersValue={delimiters}
+          categoryValue={category}
+          localeValue={locale}
+          onSearch={() => this.searchHandler()}
+          onInputChange={(e) => this.inputChangeHandler(e)}
+          onDelimitersChange={(e) => this.delimitersChangeHandler(e)}
+          onCategoryChange={(e) => this.categoryChangeHandler(e)}
+          onLocaleChange={(e) => this.localeChangeHandler(e)} />
+
         : <Details resultSelected={resultArray[resultSelectedIndex]}
           onClear={() => this.clearHandler()}
           isMobile={isMobile} />
     )
 
     const drawer = (
-      (raw !== '')
+      (resultArray.length > 0)
         ? <Results isOpen={isDrawerOpen}
           isMobile={isMobile}
           resultArray={resultArray}
           resultSelectedIndex={resultSelectedIndex}
           onResultSelect={(index) => this.resultSelectHandler(index)}
           onToggleDrawer={(status) => this.toggleDrawerHandler(status)} />
+          
         : null
     )
 
@@ -101,14 +114,28 @@ class App extends Component {
     this.setState({ resultSelectedIndex: index })
   }
 
-  searchHandler(e) {
-    this.setState({ resultArray: this.processResults(e.rawText, this.state.delimiters) })
-    this.setState({ raw: e.rawText })
+  searchHandler() {
+    this.setState({ resultArray: this.processResults(this.state.raw, this.state.delimiters) })
   }
 
+  inputChangeHandler(value) {
+    this.setState({ raw: value })
+  }
+
+  delimitersChangeHandler(value) {
+    this.setState({ delimiters: value })
+  }
+
+  categoryChangeHandler(value) {
+    this.setState({ category: value })
+  }
+
+  localeChangeHandler(value) {
+    this.setState({ locale: value })
+  }
+  
   clearHandler() {
     this.setState({
-      raw: '',
       resultArray: [],
       resultSelectedIndex: 0,
     })
@@ -116,6 +143,10 @@ class App extends Component {
 
   checkViewport(e) {
     this.setState({ isMobile: (window.innerWidth <= 960) });
+  }
+
+  isSearchClear() {
+    return (this.state.resultArray.length === 0)
   }
 
   processResults(raw, delimiters) {

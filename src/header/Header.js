@@ -30,7 +30,7 @@ class Header extends Component {
     )
 
     return (
-      <AppBar position="absolute" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           {isMobile ? menuButton : null}
           <Typography variant="title"
