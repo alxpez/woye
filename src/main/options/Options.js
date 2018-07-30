@@ -80,20 +80,20 @@ class Options extends Component {
 
     return (
       <div className={classes.root}>
-        <ExpansionPanel>
+        <ExpansionPanel disabled>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>Language</Typography>
             <Typography className={classes.secondaryHeading}>
-              Change to get the best results for your search
+              (TODO) Change to get the best results for your search
             </Typography>
           </ExpansionPanelSummary>
           {localeDetails}
         </ExpansionPanel>
-        <ExpansionPanel>
+        <ExpansionPanel disabled>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>Category</Typography>
             <Typography className={classes.secondaryHeading}>
-              For more accurate results (leave blank for a mixed search)
+              (TODO) For more accurate results (leave blank for a mixed search)
             </Typography>
           </ExpansionPanelSummary>
           {categoryDetails}
