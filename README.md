@@ -43,7 +43,7 @@ Originally it was thought for music, but it's usefull for any other kind of info
 - [x] Parse plain text into an array of elements
 - [x] Display Wikipedia page (if available)
 - [x] Fetch most relevant video from Youtube (based on the searched item)
-- [ ] Allow delimiters edition/customization (for parsing plain text input)
+- [x] Allow delimiters edition/customization (for parsing plain text input)
 - [ ] Implement locale selection (for more specific results by country/language)
 - [ ] Add category selection (more accurate search when input items from same category)
 
