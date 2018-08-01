@@ -5,6 +5,9 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import Options from './options/Options';
 import Input from './input/Input';
+import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 class Main extends Component {
 
@@ -22,26 +25,60 @@ class Main extends Component {
     onLocaleChange: PropTypes.func.isRequired,
   }
 
+  state = {
+    showAdvanced: false,
+  }
+
   render() {
-    const { classes, isMobile, inputValue, localeValue, categoryValue, delimitersValue } = this.props;
-    const { onSearch, onInputChange, onDelimitersChange, onCategoryChange, onLocaleChange } = this.props;
+    const { classes, isMobile, inputValue, localeValue, categoryValue, delimitersValue } = this.props
+    const { onSearch, onInputChange, onDelimitersChange, onCategoryChange, onLocaleChange } = this.props
+    const { showAdvanced } = this.state
+
+    const options = (
+      <Options isMobile={isMobile}
+        localeValue={localeValue}
+        categoryValue={categoryValue}
+        delimitersValue={delimitersValue}
+        onDelimitersChange={(e) => onDelimitersChange(e)}
+        onCategoryChange={(e) => onCategoryChange(e)}
+        onLocaleChange={(e) => onLocaleChange(e)} />
+    )
+
+    const showAdvancedButton = (
+      <Button color="secondary"
+        className={classes.optsButton}
+        onClick={this.toggleAdvancedOptions.bind(this, showAdvanced)}
+      >
+        {showAdvanced ? "Hide advanced options" : "Show advanced options"}
+        <Icon>{showAdvanced ? 'arrow_drop_up' : 'arrow_drop_down'}</Icon>
+      </Button>
+    )
+
+    const introduction = (
+      <div>
+        <Typography variant="display1" align={isMobile ? "center" : "left"} gutterBottom>
+          What's this for?
+        </Typography>
+        <Typography align="justify" paragraph>
+          Insert plain text and get information from Wikipedia and the most relevant video from Youtube, from each keyword. Try the following example and see the results:
+        </Typography>
+        <Typography className={classes.quoteText} align="justify" color="textSecondary" paragraph>
+          Fortnite.. ,#Plato . ;@Rihanna  , the silence of lambs#  #*meme *Michael Jackson . white shark >;. > sequoia
+        </Typography>
+        <Divider />
+      </div>
+    )
 
     return (
       <main className={classes.root}>
         <div className={classes.mainContainer}>
           <div className={classes.toolbar} />
-
-          <Options localeValue={localeValue}
-            categoryValue={categoryValue}
-            delimitersValue={delimitersValue}
-            onDelimitersChange={(e) => onDelimitersChange(e)}
-            onCategoryChange={(e) => onCategoryChange(e)}
-            onLocaleChange={(e) => onLocaleChange(e)} />
-
+          {introduction}
           <Input isMobile={isMobile}
             value={inputValue}
             onChange={(e) => onInputChange(e)} />
-
+          {showAdvancedButton}
+          {showAdvanced ? options : null}
           <Button variant="fab"
             color="secondary"
             aria-label="Search"
@@ -53,6 +90,10 @@ class Main extends Component {
         </div>
       </main>
     )
+  }
+
+  toggleAdvancedOptions(currentState) {
+    this.setState({ showAdvanced: !currentState })
   }
 }
 
@@ -75,7 +116,15 @@ const styles = theme => ({
   textField: {
     width: '100%',
     height: '100%',
-    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2,
+  },
+  quoteText: {
+    borderLeft: '3px solid rgba(255, 255, 255, 0.7)',
+    paddingLeft: theme.spacing.unit,
+    marginLeft: theme.spacing.unit
+  },
+  optsButton: {
+    width: '100%',
   },
   toolbar: theme.mixins.toolbar,
 });

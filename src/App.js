@@ -21,7 +21,7 @@ class App extends Component {
     resultArray: [],
     resultSelectedIndex: 0,
     raw: '',
-    delimiters: '[\\.\\,\\n\\*\\#\\<\\>\\;]',
+    delimiters: '[\\.\\,\\n\\*\\#\\@\\<\\>\\;]',
     category: '',
     locale: 'en',
   }
@@ -62,34 +62,32 @@ class App extends Component {
         onMenuClick={() => this.toggleDrawerHandler(!isDrawerOpen)} />
     )
 
-    const content = (
-      (resultArray.length === 0)
-        ? <Main isMobile={isMobile}
-          inputValue={raw}
-          delimitersValue={delimiters}
-          categoryValue={category}
-          localeValue={locale}
-          onSearch={() => this.searchHandler()}
-          onInputChange={(e) => this.inputChangeHandler(e)}
-          onDelimitersChange={(e) => this.delimitersChangeHandler(e)}
-          onCategoryChange={(e) => this.categoryChangeHandler(e)}
-          onLocaleChange={(e) => this.localeChangeHandler(e)} />
+    const detailsView = (
+      <Details resultSelected={resultArray[resultSelectedIndex]}
+        onClear={() => this.clearHandler()}
+        isMobile={isMobile} />
+    )
 
-        : <Details resultSelected={resultArray[resultSelectedIndex]}
-          onClear={() => this.clearHandler()}
-          isMobile={isMobile} />
+    const mainView = (
+      <Main isMobile={isMobile}
+        inputValue={raw}
+        delimitersValue={delimiters}
+        categoryValue={category}
+        localeValue={locale}
+        onSearch={() => this.searchHandler()}
+        onInputChange={(e) => this.inputChangeHandler(e)}
+        onDelimitersChange={(e) => this.delimitersChangeHandler(e)}
+        onCategoryChange={(e) => this.categoryChangeHandler(e)}
+        onLocaleChange={(e) => this.localeChangeHandler(e)} />
     )
 
     const drawer = (
-      (resultArray.length > 0)
-        ? <Results isOpen={isDrawerOpen}
-          isMobile={isMobile}
-          resultArray={resultArray}
-          resultSelectedIndex={resultSelectedIndex}
-          onResultSelect={(index) => this.resultSelectHandler(index)}
-          onToggleDrawer={(status) => this.toggleDrawerHandler(status)} />
-          
-        : null
+      <Results isOpen={isDrawerOpen}
+        isMobile={isMobile}
+        resultArray={resultArray}
+        resultSelectedIndex={resultSelectedIndex}
+        onResultSelect={(index) => this.resultSelectHandler(index)}
+        onToggleDrawer={(status) => this.toggleDrawerHandler(status)} />
     )
 
     return (
@@ -98,8 +96,8 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <div className={classes.root}>
             {header}
-            {drawer}
-            {content}
+            {(resultArray.length > 0) ? drawer : null}
+            {(resultArray.length === 0) ? mainView : detailsView}
           </div>
         </MuiThemeProvider>
       </React.Fragment>
@@ -133,7 +131,7 @@ class App extends Component {
   localeChangeHandler(value) {
     this.setState({ locale: value })
   }
-  
+
   clearHandler() {
     this.setState({
       resultArray: [],

@@ -46,6 +46,7 @@ Originally it was thought for music, but it's usefull for any other kind of info
 - [x] Allow delimiters edition/customization (for parsing plain text input)
 - [ ] Implement locale selection (for more specific results by country/language)
 - [ ] Add category selection (more accurate search when input items from same category)
+- [x] Improve user interface and usability (provide more info about WOYE)
 
 ## Donate
 

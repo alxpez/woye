@@ -16,6 +16,7 @@ class Options extends Component {
 
   static propTypes = {
     classes: PropTypes.object.isRequired,
+    isMobile: PropTypes.bool.isRequired,
     localeValue: PropTypes.string.isRequired,
     categoryValue: PropTypes.string.isRequired,
     delimitersValue: PropTypes.string.isRequired,
@@ -25,7 +26,7 @@ class Options extends Component {
   }
 
   render() {
-    const { classes, onDelimitersChange, delimitersValue } = this.props;
+    const { classes, isMobile, onDelimitersChange, delimitersValue } = this.props;
 
     const theme = createMuiTheme({
       palette: {
@@ -40,19 +41,15 @@ class Options extends Component {
     })
 
     const localeDetails = (
-      <ExpansionPanelDetails>
-        <Typography>
-          (TODO)
-        </Typography>
-      </ExpansionPanelDetails>
+      <Typography>
+        (TODO)
+      </Typography>
     )
 
     const categoryDetails = (
-      <ExpansionPanelDetails>
-        <Typography>
-          (TODO)
-        </Typography>
-      </ExpansionPanelDetails>
+      <Typography>
+        (TODO)
+      </Typography>
     )
 
     const infoButton = (
@@ -67,46 +64,35 @@ class Options extends Component {
     )
 
     const delimitersDetails = (
-      <ExpansionPanelDetails>
-        <MuiThemeProvider theme={theme}>
-          <TextField className={classes.textField}
-            label="RegExp"
-            onChange={(e) => onDelimitersChange(e.target.value)}
-            value={delimitersValue}
-            InputProps={{ endAdornment: infoButton, }} />
-        </MuiThemeProvider>
-      </ExpansionPanelDetails>
+      <MuiThemeProvider theme={theme}>
+        <TextField className={classes.textField}
+          label=" "
+          onChange={(e) => onDelimitersChange(e.target.value)}
+          value={delimitersValue}
+          InputProps={{ endAdornment: infoButton, }} />
+      </MuiThemeProvider>
     )
+
+    const panel = (disabled, heading, subheading, content) => {
+      return (
+        <ExpansionPanel disabled={disabled}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography className={classes.heading}>{heading}</Typography>
+            {isMobile ? null : <Typography className={classes.secondaryHeading}>{subheading}</Typography>}
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={classes.root}>
+            {isMobile ? <Typography className={classes.secondaryHeading}>{subheading}</Typography> : null}
+            {content}
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      )
+    }
 
     return (
       <div className={classes.root}>
-        <ExpansionPanel disabled>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Language</Typography>
-            <Typography className={classes.secondaryHeading}>
-              (TODO) Change to get the best results for your search
-            </Typography>
-          </ExpansionPanelSummary>
-          {localeDetails}
-        </ExpansionPanel>
-        <ExpansionPanel disabled>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Category</Typography>
-            <Typography className={classes.secondaryHeading}>
-              (TODO) For more accurate results (leave blank for a mixed search)
-            </Typography>
-          </ExpansionPanelSummary>
-          {categoryDetails}
-        </ExpansionPanel>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Delimiters</Typography>
-            <Typography className={classes.secondaryHeading}>
-              Breaking characters for the introduced plain-text (regular expression)
-            </Typography>
-          </ExpansionPanelSummary>
-          {delimitersDetails}
-        </ExpansionPanel>
+        {panel(true, 'Language', 'Change to get the best results for your search', localeDetails)}
+        {panel(true, 'Category', 'For more accurate results (leave blank for a mixed search)', categoryDetails)}
+        {panel(false, 'Delimiters', 'Breaking characters for the introduced plain-text (regular expression)', delimitersDetails)}
       </div>
     )
   }
@@ -123,6 +109,7 @@ class Options extends Component {
 const styles = theme => ({
   root: {
     width: '100%',
+    display: 'block'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

@@ -13,7 +13,7 @@ class Input extends Component {
   }
 
   render() {
-    const { classes, isMobile, onChange, value } = this.props;
+    const { classes, onChange, value } = this.props;
 
     const theme = createMuiTheme({
       palette: {
@@ -34,8 +34,7 @@ class Input extends Component {
             onChange={(e) => onChange(e.target.value)}
             label="Insert plain text"
             value={value}
-            multiline
-            rowsMax={isMobile ? 10 : 'auto'} />
+            multiline/>
         </MuiThemeProvider>
       </div>
     )
@@ -43,24 +42,10 @@ class Input extends Component {
 }
 
 const styles = theme => ({
-  root: {
-    width: '100%',
-    position: 'relative',
-  },
-  mainContainer: {
-    minHeight: '100%',
-    width: '100%',
-    padding: theme.spacing.unit * 2,
-    paddingTop: theme.spacing.unit,
-  },
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing.unit * 3,
-    right: theme.spacing.unit * 3,
-  },
   textField: {
     width: '100%',
     height: '100%',
+    marginBottom: theme.spacing.unit * 2,
     marginTop: theme.spacing.unit * 2,
   },
   toolbar: theme.mixins.toolbar,
