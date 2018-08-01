@@ -63,7 +63,7 @@ class Main extends Component {
           Insert plain text and get information from Wikipedia and the most relevant video from Youtube, from each keyword. Try the following example and see the results:
         </Typography>
         <Typography className={classes.quoteText} align="justify" color="textSecondary" paragraph>
-          Fortnite.. ,#Plato . ;@Rihanna  , the silence of lambs#  #*meme *Michael Jackson . white shark >;. > sequoia
+          Fortnite.. ,#Plato . ;@Rihanna  , the silence of the lambs#  #*meme *Michael Jackson . white shark >;. > sequoia
         </Typography>
         <Divider />
       </div>

@@ -55,7 +55,7 @@ class Options extends Component {
     const infoButton = (
       <InputAdornment position="end">
         <IconButton aria-label="Info about regular expressions"
-          href='https://regexr.com/3t6pc'
+          href='https://regexr.com/3ta3s'
           target='_blank'
         >
           <InfoIcon />
@@ -90,9 +90,9 @@ class Options extends Component {
 
     return (
       <div className={classes.root}>
-        {panel(true, 'Language', 'Change to get the best results for your search', localeDetails)}
-        {panel(true, 'Category', 'For more accurate results (leave blank for a mixed search)', categoryDetails)}
         {panel(false, 'Delimiters', 'Breaking characters for the introduced plain-text (regular expression)', delimitersDetails)}
+        {panel(true, 'Language', '(TODO) Change to get the best results for your search', localeDetails)}
+        {panel(true, 'Category', '(TODO) For more accurate results (leave blank for a mixed search)', categoryDetails)}
       </div>
     )
   }
