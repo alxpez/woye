@@ -60,7 +60,7 @@ class Main extends Component {
           What's this for?
         </Typography>
         <Typography align="justify" paragraph>
-          Insert plain text and get information from Wikipedia and the most relevant video from Youtube, from each keyword. Try the following example and see the results:
+          Insert plain text and get information from Wikipedia and the most relevant video from Youtube, for each keyword. Try the following example and see the results:
         </Typography>
         <Typography className={classes.quoteText} align="justify" color="textSecondary" paragraph>
           Fortnite.. ,#Plato . ;@Rihanna  , the silence of the lambs#  #*meme *Michael Jackson . white shark >;. > sequoia
